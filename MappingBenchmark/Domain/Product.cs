@@ -1,8 +1,10 @@
-﻿using System;
+﻿using Mapster;
+using System;
 using System.Collections.Generic;
 
 namespace MappingBenchmark.Domain
 {
+    [AdaptTo("[name]CodeGenTo"), GenerateMapper]
     public class Product
     {
         public Guid Id { get; set; }
