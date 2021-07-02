@@ -46,10 +46,15 @@ namespace MappingBenchmark
             return MapsterMapper.From(GenerateProduct).AdaptToType<ProductDto>();
         }
 
+        public static ProductCodeGenDto MapsterCodeGenSample()
+        {
+            return GenerateProduct.AdaptToCodeGenDto();
+        }
+
         public static ProductDto ManualMapSample()
         {
             var product = GenerateProduct;
-            return new ProductDto
+            var dto = new ProductDto
             {
                 Id = product.Id,
                 Description = product.Description,
@@ -60,14 +65,24 @@ namespace MappingBenchmark
                     Id = product.DefaultOption.Id,
                     Color = product.DefaultOption.Color,
                     Size = product.DefaultOption.Size
-                },
-                Options = product.Options.Select(x => new ProductVariantDto
-                {
-                    Id = x.Id,
-                    Color = x.Color,
-                    Size = x.Size
-                }).ToList()
+                }
             };
+
+            var options = new List<ProductVariantDto>();
+
+            for (var i = 0; i < product.Options.Count; i++)
+            {
+                options.Add(new ProductVariantDto
+                {
+                    Id = product.Options[i].Id,
+                    Color = product.Options[i].Color,
+                    Size = product.Options[i].Size
+                });
+            }
+
+            dto.Options = options;
+
+            return dto;
         }
 
         public static TypeAdapterConfig GetTypeAdapterConfig()
@@ -76,6 +91,7 @@ namespace MappingBenchmark
             config.NewConfig<Product, ProductDto>();
             return config;
         }
+
 
         public static readonly Product GenerateProduct = new()
         {
@@ -121,4 +137,5 @@ namespace MappingBenchmark
             CreateMap<Product, ProductDto>();
         }
     }
+
 }

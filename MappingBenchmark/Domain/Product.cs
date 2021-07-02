@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 namespace MappingBenchmark.Domain
 {
-    [AdaptTo("[name]CodeGenTo"), GenerateMapper]
+    [AdaptTo("[name]CodeGenDto"), GenerateMapper]
     public class Product
     {
         public Guid Id { get; set; }

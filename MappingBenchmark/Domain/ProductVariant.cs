@@ -3,7 +3,7 @@ using System;
 
 namespace MappingBenchmark.Domain
 {
-    [AdaptTo("[name]CodeGenTo"), GenerateMapper]
+    [AdaptTo("[name]CodeGenDto"), GenerateMapper]
     public class ProductVariant
     {
         public Guid Id { get; set; }

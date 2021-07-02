@@ -1,5 +1,6 @@
 ﻿using BenchmarkDotNet.Attributes;
 using BenchmarkDotNet.Order;
+using MappingBenchmark.Domain;
 using MappingBenchmark.Dtos;
 
 namespace MappingBenchmark
@@ -18,5 +19,7 @@ namespace MappingBenchmark
         [Benchmark] public ProductDto MapsterAdapterWithConfig() => MappingSamples.MapsterAdapterWithConfigSample();
 
         [Benchmark] public ProductDto MapsterAdaptToType() => MappingSamples.MapsterAdaptToTypeSample();
+
+        [Benchmark] public ProductCodeGenDto MapsterCodeGen() => MappingSamples.MapsterCodeGenSample();
     }
 }
